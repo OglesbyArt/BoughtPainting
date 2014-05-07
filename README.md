@@ -447,7 +447,50 @@ protected double targetSellingPrice;
     
     public void performDeletion()
     {
-        //need to write this!!!
+               System.out.println("performdeletion");
+    try
+    {
+	File  galleryPainting = new File ("GalleryPaintings.dat");
+	File  tempgalleryPainting = new File ("painting.tmp");
+
+	BoughtPainting bp = new BoughtPainting();	// record to be checked
+
+	if (!galleryPainting.exists ())
+	{
+            System.out.println("galleryPainting doesn't exist");
+	  return;
+	}
+
+	RandomAccessFile inFile = new RandomAccessFile (galleryPainting, "r");
+	RandomAccessFile outFile = new RandomAccessFile (tempgalleryPainting, "rw");
+
+	while (inFile.getFilePointer () != inFile.length ())
+	{
+	  bp.read (inFile);
+          System.out.println("Read");
+
+          if ((artistLastName.compareTo (bp.getArtistLastName ()) != 0) && (
+                  titleOfWork.compareTo(bp.getTitleofWork()) !=0))
+	  {
+              System.out.println("write");
+	      bp.write (outFile);
+	  }
+	}
+         System.out.println("before close");
+	inFile.close ();
+	outFile.close ();
+         System.out.println("after close");
+
+	galleryPainting.delete ();
+        System.out.println("deleted");
+	tempgalleryPainting.renameTo (galleryPainting);
+
+    }
+    catch (Exception e)
+    {
+	System.out.println ("***** Error: Investment.performDeletion () *****");
+	System.out.println ("\t" + e);
+    }
     }
     
     public void readInRecord()
