@@ -563,4 +563,43 @@ protected double targetSellingPrice;
             System.out.println ("\t" + e);
           }
     }
+          public double findPrice(String alastname, String title)
+    {
+        try
+        {
+            File paintingsFile = new File ("GalleryPaintings.dat");
+            boolean found = false;
+            double max=0;
+            double dummyMax=0;
+            if (paintingsFile.exists())
+            {
+                RandomAccessFile inFile = new RandomAccessFile (paintingsFile, "r");
+                while (!found && (inFile.getFilePointer()!=inFile.length()))
+                {
+                    read (inFile);
+                    if (artistLastName.equalsIgnoreCase(alastname) &&
+                    titleOfWork.equalsIgnoreCase(title))
+                        
+                        dummyMax=suggestedMaximumPurchasePrice;
+                        if(dummyMax>max && (inFile.getFilePointer()==inFile.length()))
+                        {
+                            found = true;
+                            max=dummyMax;
+                        }
+                        else if (dummyMax>max && (inFile.getFilePointer()!=inFile.length()))
+                            max=dummyMax;
+                }
+                inFile.close();
+
+            }
+            return max;
+        }
+        catch (Exception e)
+        {
+            System.out.println ("***** Error: BoughtPainting.find () *****");
+            System.out.println ("\t" + e);
+            return 0;
+        }
+    }
+}
 }
