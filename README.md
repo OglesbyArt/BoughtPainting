@@ -411,7 +411,7 @@ protected double targetSellingPrice;
                 while (oldFile.getFilePointer () != oldFile.length ()) 
                 {
                     tempPainting.read(oldFile);
-                    if (artistLastName.equalsIgnoreCase(tempPainting.getArtistsLastName()) &&
+                    if (artistLastName.equalsIgnoreCase(tempPainting.getArtistLastName()) &&
                     titleOfWork.equalsIgnoreCase(tempPainting.getTitleofWork()))
                         comparePaintings=true;
                     else comparePaintings=false;
