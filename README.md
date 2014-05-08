@@ -515,4 +515,52 @@ protected double targetSellingPrice;
       System.out.print ("\t Actual Purchase Price: " + actualPurchasePrice); 
       System.out.println ("\t Target Selling Price: " + targetSellingPrice);    
     } 
+
+    //  obtains input data for all fields of a Painting record.
+    public void readInRecord()
+    {
+        try
+        {
+            char c;				// character entered by user
+            String input;                      	// buffer for line of characters
+            boolean valid = false;      		// used to validate length of ID
+            System.out.println("Enter Artist First name: ");
+            artistFirstName = UserInterface.getString();
+            System.out.println("Enter Artist Last name: ");
+            artistLastName= UserInterface.getString();
+            System.out.println("Enter title of painting: ");
+            titleOfWork = UserInterface.getString();
+            System.out.println("Enter the date the painting was created (mm/dd/yyyy): ");
+            Date tempdate = new Date(UserInterface.getString());
+            //catch errors on date not converting here
+            dateOfWork=tempdate; 
+            System.out.println("Enter painting medium (oil, watercolor, or other): ");
+            medium  = UserInterface.getString();
+            while (!(medium.equalsIgnoreCase("oil")|medium.equalsIgnoreCase("watercolor")|
+                    medium.equalsIgnoreCase("other")))
+            {
+                System.out.println("Medium entered incorrectly. Please enter one of the following mediums: oil, watercolor, or other.");
+                medium=UserInterface.getString();
+            }
+            System.out.println("Enter painting subject (portrait, still-life, landscape, or other): ");
+            subject =UserInterface.getString();
+            while (!(subject.equalsIgnoreCase("portrait")|subject.equalsIgnoreCase("still-life")|
+            subject.equalsIgnoreCase("landscape")| subject.equalsIgnoreCase("other")))
+            {
+                System.out.println("Subject entered incorrectly. Please enter one of the following subjects: portrait, still-life, landscape, or other.");
+                subject=UserInterface.getString();
+            }
+            System.out.println("Enter painting width: ");
+            Double tempw=new Double( UserInterface.getString());
+            width =tempw; //error check if it can't be converted to a double
+            System.out.println("Enter painting height: ");
+            Double temph=new Double( UserInterface.getString());
+            height =temph;//error check if it can't be convereted to a double
+        }
+          catch (Exception e)
+          {
+            System.out.println ("***** Error: Investment.readInvestmentData () *****");
+            System.out.println ("\t" + e);
+          }
+    }
 }
