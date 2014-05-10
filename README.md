@@ -710,4 +710,39 @@ protected double targetSellingPrice;
             return 0;
         }
     } 
+      public void addRecentlyBought ()
+
+	  {
+	    try
+	    {
+		int c;	// character entered by user
+	        
+	        System.out.println("Enter Artist First name: ");
+	        artistFirstName = UserInterface.getString();       
+	
+	        System.out.println("Enter title of painting: ");
+	        titleOfWork = UserInterface.getString();
+	        
+	         System.out.println("Enter classification of Painting (masterpiece, masterwork, or other): ");
+	            classification = UserInterface.getString();
+	            while (!(classification.equalsIgnoreCase("masterpiece")|classification.equalsIgnoreCase("masterwork")|
+	                    classification.equalsIgnoreCase("other")))
+	            {
+	                System.out.println("Classification entered incorrectly. Please enter one of the following mediums: masterpiece, masterwork, or other.");
+	                classification=UserInterface.getString();
+	            }
+	
+		save ();
+		System.out.println ("\nThe following record was inserted\n");
+		print ();
+		//UserInterface.pressEnter();
+	
+	    }
+	    catch (Exception e)
+	    {
+		System.out.println ("***** Error: BoughtPainting.addRecentlyBought () *****");
+		System.out.println ("\t" + e);
+	    }
+
+  }  // add
 }
