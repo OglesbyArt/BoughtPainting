@@ -271,7 +271,7 @@ protected double targetSellingPrice;
               i++;
             }
             Double tempwidth = new Double (input.toString ());
-            height = tempwidth;
+            width = tempwidth;
             i++;
             
             input = new StringBuffer ();
