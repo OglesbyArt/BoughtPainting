@@ -13,13 +13,14 @@ protected Date dateOfPurchase;
 protected String nameOfSeller;
 protected String addressOfSeller;
 protected double actualPurchasePrice;
+protected final double TARGET_PROFIT=2.15;
 protected double targetSellingPrice;
 
     //Desc: constructor for BoughtPainting
     //Post: allow class to set the value of all Bought Painting fields in a record
     BoughtPainting(String fname, String lname, String work, Date dwork, 
     String clas, double h, double w, String med, String sub, double max, 
-    Date d, String n, String a, double p, double t)
+    Date d, String n, String a, double p)
     {
             artistFirstName=fname;
             artistLastName=lname;
@@ -35,7 +36,7 @@ protected double targetSellingPrice;
             nameOfSeller=n;
             addressOfSeller=a;
             actualPurchasePrice=p;
-            targetSellingPrice=t;
+            targetSellingPrice=actualPurchasePrice*TARGET_PROFIT;
     }
     //Desc: constructor for BoughtPainting
     //Post: instentiates a blank BoughtPainting object
@@ -55,9 +56,8 @@ protected double targetSellingPrice;
         nameOfSeller="";
         addressOfSeller="";
         actualPurchasePrice=0;
-        targetSellingPrice=0;
+        targetSellingPrice=actualPurchasePrice*TARGET_PROFIT;
         dateOfPurchase= new Date();
-        
     }
 
     //Desc: allows class to access the suggestedMaximumPurchasePrice field in a record
@@ -173,14 +173,14 @@ protected double targetSellingPrice;
         try 
         {
             System.out.println("Old Date of Purchase:" + dateOfPurchase);
-            System.out.println("Please enter new Date of Purchase and press <ENTER>: ");
+            System.out.println("Please enter new Date of Purchase (mm/dd/yyyy) and press <ENTER>: ");
             Date tempDate=new Date(UserInterface.getString());
             dateOfPurchase=tempDate;
         }
         
         catch (NumberFormatException e)
         {
-           System.out.println("Value entered is not a date value. Please enter a date value: "); 
+           System.out.println("Value entered is not a date value. Please enter a date value (mm/dd/yyyy): "); 
            Date tempDate=new Date (UserInterface.getString());
            dateOfPurchase=tempDate;
            return;
@@ -215,12 +215,14 @@ protected double targetSellingPrice;
             System.out.println("Please enter new Actual Purchase Price and press <ENTER>: ");
             double tempprice=new Double(UserInterface.getString());
             actualPurchasePrice=tempprice;
+            targetSellingPrice=actualPurchasePrice*TARGET_PROFIT;
         }
         
         catch (NumberFormatException e)
         {
            System.out.println("Value entered is not an double value. Please enter a double value: "); 
            actualPurchasePrice=Double.parseDouble(UserInterface.getString());
+           targetSellingPrice=actualPurchasePrice*TARGET_PROFIT;
            return;
         }
     }
@@ -468,7 +470,7 @@ protected double targetSellingPrice;
     }
     
     //Desc: saves an individual bought painting record into a file.  Will save over an
-    //      existing record if the last name and title of wokr match or will add
+    //      existing record if the last name and title of work match or will add
     //      a new record if no existing record matches this object.
     //Pre:  all Bought Painting fields must be valid
     //Post: the message informing the user has been printed and the artist.dat
@@ -493,7 +495,7 @@ protected double targetSellingPrice;
                 while (oldFile.getFilePointer () != oldFile.length ()) 
                 {
                     tempPainting.read(oldFile);
-                    if (artistLastName.equalsIgnoreCase(tempPainting.getArtistsLastName()) &&
+                    if (artistLastName.equalsIgnoreCase(tempPainting.getArtistLastName()) &&
                     titleOfWork.equalsIgnoreCase(tempPainting.getTitleofWork()))
                         comparePaintings=true;
                     else comparePaintings=false;
@@ -522,7 +524,7 @@ protected double targetSellingPrice;
         }
     }
     
-    //Desc: reads in all fields into an Artist object from user input
+    //Desc: reads in all fields into a Painting object from user input
     //Post: artistFirstName, artistLastName, and fashionabilityValue are modified
     public void readInRecord()
     {
@@ -589,9 +591,9 @@ protected double targetSellingPrice;
         }*/
     }
     
-    //Desc: Deletes a single record in the artist.dat File if the artist last 
+    //Desc: Deletes a single record in the GalleryPaintings.dat File if the artist last 
     //      name and first name matches this object.
-    //Post: Modifies the artist.dat File   
+    //Post: Modifies the GalleryPaintings.dat File   
     public void performDeletion ()
     {
         try
@@ -613,7 +615,7 @@ protected double targetSellingPrice;
             {
               bp.read (inFile);
 
-              if (!(artistLastName.equalsIgnoreCase(bp.getArtistsLastName()) &&
+              if (!(artistLastName.equalsIgnoreCase(bp.getArtistLastName()) &&
                         titleOfWork.equalsIgnoreCase(bp.getTitleofWork())))
               {
                   bp.write (outFile);
@@ -653,27 +655,7 @@ protected double targetSellingPrice;
       System.out.println ("\t Target Selling Price: " + targetSellingPrice);    
     } 
     
-    public void add ()
-    {
-        try
-        {
-            //obtainNewData ();
-           /* updateFashionabilityValue();
-            updateArtistLastName();
-            updateArtistsFirstName();*/
-            readInRecord();
-            save ();
-            System.out.println ("\nThe following record was inserted\n");
-            print ();
-            //UserInterface.pressEnter();
-
-        }
-        catch (Exception e)
-        {
-            System.out.println ("***** Error: Artist.add () *****");
-            System.out.println ("\t" + e);
-        }
-    }
+    
     public double findPrice(String alastname, String sub, String med, double area)
     {
         try
@@ -700,7 +682,7 @@ protected double targetSellingPrice;
                             System.out.println(subject.equalsIgnoreCase(sub));
                              subjectnumber=1;
                         }
-                           
+
                         else subjectnumber=0;
 
                         if(medium.equalsIgnoreCase(med))
@@ -727,6 +709,5 @@ protected double targetSellingPrice;
             System.out.println ("\t" + e);
             return 0;
         }
-
-}
+    } 
 }
