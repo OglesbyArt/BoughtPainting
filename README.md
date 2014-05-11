@@ -194,6 +194,11 @@ protected double targetSellingPrice;
         System.out.println("Old Name of Seller:" + nameOfSeller);
         System.out.println("Please enter new Name of Seller and press <ENTER>: ");
         nameOfSeller=UserInterface.getString();
+        while(nameOfSeller.length()>30) 
+        {
+            System.out.println("Name of seller exceeds 30 characters. Please enter shortened name:");
+            nameOfSeller=UserInterface.getString();
+        }           
     }
 
     //Desc: updates the addressOfSeller in a record from user's input
@@ -203,6 +208,11 @@ protected double targetSellingPrice;
         System.out.println("Old Address of Seller:" + addressOfSeller);
         System.out.println("Please enter new Address of Seller and press <ENTER>: ");
         addressOfSeller=UserInterface.getString();
+        while(addressOfSeller.length()>40) 
+        {
+            System.out.println("Address of seller exceeds 40 characters. Please enter shortened address:");
+            addressOfSeller=UserInterface.getString();
+        }   
     }
 
     //Desc: updates the actualPurchasePrice in a record from user's input
@@ -532,12 +542,28 @@ protected double targetSellingPrice;
         {                        		
             System.out.println("Enter Artist First name: ");
             artistFirstName = UserInterface.getString();
+            while(artistFirstName.length()>21) //extra is for ?
+            {
+                System.out.println("Artist's First name exceeds 20 characters. Please enter shortened name:");
+                artistFirstName=UserInterface.getString();
+            }
             
             System.out.println("Enter Artist Last name: ");
             artistLastName= UserInterface.getString();
+            while(artistLastName.length()>21) 
+            {
+                System.out.println("Artist's Last name exceeds 20 characters. Please enter shortened name:");
+                artistLastName=UserInterface.getString();
+            }            
             
             System.out.println("Enter title of painting: ");
             titleOfWork = UserInterface.getString();
+            while(titleOfWork.length()>41) 
+            {
+                System.out.println("Title of Work exceeds 40 characters. Please enter shortened title:");
+                titleOfWork=UserInterface.getString();
+            }            
+            
             
             System.out.println("Enter classification of Painting (masterpiece, masterwork, or other): ");
             classification = UserInterface.getString();
@@ -743,6 +769,6 @@ protected double targetSellingPrice;
 		System.out.println ("***** Error: BoughtPainting.addRecentlyBought () *****");
 		System.out.println ("\t" + e);
 	    }
-
-  }  // add
+	}  
+	
 }
