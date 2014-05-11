@@ -682,39 +682,48 @@ protected double targetSellingPrice;
     } 
     
 
-      public void addRecentlyBought ()
+  //Desc: prompts the user to enter the special bought painting fields so that
+  //    the painting the user buys can be added to "GalleryPainting.dat"
+  //Pre: all of the values from painting class must already be set
+  //Post: GalleryPainting.dat will have the new painting added to the records
+  public void addRecentlyBought ()
 
-	  {
-	    try
-	    {
-		int c;	// character entered by user
-	        
-	        System.out.println("Enter Artist First name: ");
-	        artistFirstName = UserInterface.getString();       
-	
-	        System.out.println("Enter title of painting: ");
-	        titleOfWork = UserInterface.getString();
-	        
-	         System.out.println("Enter classification of Painting (masterpiece, masterwork, or other): ");
-	            classification = UserInterface.getString();
-	            while (!(classification.equalsIgnoreCase("masterpiece")|classification.equalsIgnoreCase("masterwork")|
-	                    classification.equalsIgnoreCase("other")))
-	            {
-	                System.out.println("Classification entered incorrectly. Please enter one of the following mediums: masterpiece, masterwork, or other.");
-	                classification=UserInterface.getString();
-	            }
-	
-		save ();
-		System.out.println ("\nThe following record was inserted\n");
-		print ();
-		//UserInterface.pressEnter();
-	
-	    }
-	    catch (Exception e)
-	    {
-		System.out.println ("***** Error: BoughtPainting.addRecentlyBought () *****");
-		System.out.println ("\t" + e);
-	    }
-	}  
+  {
+    try
+    {
+
+
+
+        System.out.println("Enter the date the painting was purchased (mm/dd/yyyy): ");
+        Date tempdate = new Date(UserInterface.getString());
+        dateOfPurchase=tempdate;
+
+        System.out.println("Enter Seller's name: ");
+        artistFirstName = UserInterface.getString();
+
+        System.out.println("Enter Seller's address: ");
+        artistFirstName = UserInterface.getString();
+
+        System.out.println("Enter painting actual purchase price: ");
+        Double tempw=new Double( UserInterface.getString());
+        actualPurchasePrice =tempw;
+
+
+        targetSellingPrice=actualPurchasePrice*TARGET_PROFIT;
+
+	save ();
+	System.out.println ("\nThe following record was inserted\n");
+	print ();
+	//UserInterface.pressEnter();
+
+    }
+    catch (Exception e)
+    {
+	System.out.println ("***** Error: BoughtPainting.addRecentlyBought () *****");
+	System.out.println ("\t" + e);
+    }
+
+  }  
+
 	
 }
