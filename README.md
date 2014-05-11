@@ -681,61 +681,7 @@ protected double targetSellingPrice;
       System.out.println ("\t Target Selling Price: " + targetSellingPrice);    
     } 
     
-    
-    public double findPrice(String alastname, String sub, String med, double area)
-    {
-        try
-        {
-            File paintingsFile = new File ("GalleryPaintings.dat");
-            boolean found = false;
-            double max=0;
-            double dummyMax=0;
-            double coeff=0;
-            double dummycoeff=0;
-            int subjectnumber=0;
-            int mediumnumber=0;
-            if (paintingsFile.exists())
-            {
-                RandomAccessFile inFile = new RandomAccessFile (paintingsFile, "r");
-                while (!found && (inFile.getFilePointer()!=inFile.length()))
-                {
-                    read (inFile);
-                    if (artistLastName.equalsIgnoreCase(alastname) )
-                    {
-                        System.out.println(titleOfWork);
-                        if (subject.equalsIgnoreCase(sub))
-                        {
-                            System.out.println(subject.equalsIgnoreCase(sub));
-                             subjectnumber=1;
-                        }
 
-                        else subjectnumber=0;
-
-                        if(medium.equalsIgnoreCase(med))
-                            mediumnumber=1;
-                        else mediumnumber=0;
-                        dummycoeff=(mediumnumber+subjectnumber)*area/(width*height); //come back to this
-                        if(dummycoeff>coeff && (inFile.getFilePointer()==inFile.length()))
-                        {
-                            found = true;
-                            max=suggestedMaximumPurchasePrice;
-                        }
-                        else if (dummycoeff>coeff && (inFile.getFilePointer()!=inFile.length()))
-                            max=suggestedMaximumPurchasePrice;
-                    }
-                }
-                inFile.close();
-
-            }
-            return max;
-        }
-        catch (Exception e)
-        {
-            System.out.println ("***** Error: BoughtPainting.find () *****");
-            System.out.println ("\t" + e);
-            return 0;
-        }
-    } 
       public void addRecentlyBought ()
 
 	  {
