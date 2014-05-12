@@ -565,16 +565,6 @@ protected double targetSellingPrice;
                 titleOfWork=UserInterface.getString();
             }            
             
-            
-            System.out.println("Enter classification of Painting (masterpiece, masterwork, or other): ");
-            classification = UserInterface.getString();
-            while (!(classification.equalsIgnoreCase("masterpiece")|classification.equalsIgnoreCase("masterwork")|
-                    classification.equalsIgnoreCase("other")))
-            {
-                System.out.println("Classification entered incorrectly. Please enter one of the following mediums: masterpiece, masterwork, or other.");
-                classification=UserInterface.getString();
-            }
-            
             System.out.println("Enter the date the painting was created (mm/dd/yyyy): ");
             Date tempdate = new Date(UserInterface.getString());
             dateOfWork=tempdate; 
@@ -627,17 +617,13 @@ protected double targetSellingPrice;
         {
             File  paintingsFile = new File ("GalleryPaintings.dat");
             File  tempPaintingsFile = new File ("GalleryPaintings.tmp");
-
             BoughtPainting bp = new BoughtPainting ();	// record to be checked
-
             if (!paintingsFile.exists ())
             {
               return;
             }
-
             RandomAccessFile inFile = new RandomAccessFile (paintingsFile, "r");
             RandomAccessFile outFile = new RandomAccessFile (tempPaintingsFile, "rw");
-
             while (inFile.getFilePointer () != inFile.length ())
             {
               bp.read (inFile);
@@ -648,7 +634,6 @@ protected double targetSellingPrice;
                   bp.write (outFile);
               }
             }
-
             inFile.close ();
             outFile.close ();
 
@@ -662,7 +647,7 @@ protected double targetSellingPrice;
             System.out.println ("\t" + e);
         }
     }  
-    
+  
     public void print ()
     {
       System.out.print ("Artist First Name: " + artistFirstName);
@@ -682,7 +667,6 @@ protected double targetSellingPrice;
       System.out.println ("\t Target Selling Price: " + targetSellingPrice);    
     } 
     
-
   //Desc: prompts the user to enter the special bought painting fields so that
   //    the painting the user buys can be added to "GalleryPainting.dat"
   //Pre: all of the values from painting class must already be set
@@ -692,9 +676,6 @@ protected double targetSellingPrice;
   {
     try
     {
-
-
-
         System.out.println("Enter the date the painting was purchased (mm/dd/yyyy): ");
         Date tempdate = new Date(UserInterface.getString());
         dateOfPurchase=tempdate;
@@ -709,20 +690,17 @@ protected double targetSellingPrice;
         Double tempw=new Double( UserInterface.getString());
         actualPurchasePrice =tempw;
 
-
         targetSellingPrice=actualPurchasePrice*TARGET_PROFIT;
 
 	save ();
 	System.out.println ("\nThe following record was inserted\n");
 	print ();
 	UserInterface.pressEnter();
-
     }
     catch (Exception e)
     {
 	System.out.println ("***** Error: BoughtPainting.addRecentlyBought () *****");
 	System.out.println ("\t" + e);
     }
-
   }  
 }
