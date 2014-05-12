@@ -540,20 +540,7 @@ protected double targetSellingPrice;
     public void readInRecord()
     {
         try
-        {  
-            UserInterface.clearScreen();
-            int response = 0;
-            System.out.println ("\t             BUY A PAINTING\n\n");
-            System.out.println ("\t         Oglesby Art Pricing System\n\n");
-            System.out.println ("\t     What type of painting do you want to buy?\n"
-                    + "\t       1. Masterpiece\n"
-                    + "\t       2. Masterwork\n"
-                    + "\t       3. Other work\n"
-                    + "\t       Enter number 1, 2 or 3");
-            response = UserInterface.getInt();
-            if(response == 1) classification.equalsIgnoreCase("masterpiece");
-            if(response == 2) classification.equalsIgnoreCase("masterwork");
-            if (response == 3) classification.equalsIgnoreCase("other");
+        {                        		
             System.out.println("Enter Artist First name: ");
             artistFirstName = UserInterface.getString();
             while(artistFirstName.length()>21) //extra is for ?
@@ -578,6 +565,15 @@ protected double targetSellingPrice;
                 titleOfWork=UserInterface.getString();
             }            
             
+            
+            System.out.println("Enter classification of Painting (masterpiece, masterwork, or other): ");
+            classification = UserInterface.getString();
+            while (!(classification.equalsIgnoreCase("masterpiece")|classification.equalsIgnoreCase("masterwork")|
+                    classification.equalsIgnoreCase("other")))
+            {
+                System.out.println("Classification entered incorrectly. Please enter one of the following mediums: masterpiece, masterwork, or other.");
+                classification=UserInterface.getString();
+            }
             
             System.out.println("Enter the date the painting was created (mm/dd/yyyy): ");
             Date tempdate = new Date(UserInterface.getString());
@@ -728,5 +724,5 @@ protected double targetSellingPrice;
 	System.out.println ("\t" + e);
     }
 
-  }  	
+  }  
 }
