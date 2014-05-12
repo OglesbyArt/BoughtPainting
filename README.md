@@ -676,31 +676,37 @@ protected double targetSellingPrice;
   {
     try
     {
+
+
+
         System.out.println("Enter the date the painting was purchased (mm/dd/yyyy): ");
         Date tempdate = new Date(UserInterface.getString());
         dateOfPurchase=tempdate;
 
         System.out.println("Enter Seller's name: ");
-        artistFirstName = UserInterface.getString();
+        nameOfSeller = UserInterface.getString();
 
         System.out.println("Enter Seller's address: ");
-        artistFirstName = UserInterface.getString();
+        addressOfSeller = UserInterface.getString();
 
         System.out.println("Enter painting actual purchase price: ");
         Double tempw=new Double( UserInterface.getString());
         actualPurchasePrice =tempw;
+
 
         targetSellingPrice=actualPurchasePrice*TARGET_PROFIT;
 
 	save ();
 	System.out.println ("\nThe following record was inserted\n");
 	print ();
-	UserInterface.pressEnter();
+	//UserInterface.pressEnter();
+
     }
     catch (Exception e)
     {
 	System.out.println ("***** Error: BoughtPainting.addRecentlyBought () *****");
 	System.out.println ("\t" + e);
     }
+
   }  
 }
