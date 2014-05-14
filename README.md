@@ -1,13 +1,14 @@
-package artpricingsystem;
+package oglesby;
+
 
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Date;
 
-class BoughtPainting extends Painting 
+class BoughtPainting extends Painting
 {
-    
+
 protected double suggestedMaximumPurchasePrice;
 protected Date dateOfPurchase;
 protected String nameOfSeller;
@@ -18,8 +19,8 @@ protected double targetSellingPrice;
 
     //Desc: constructor for BoughtPainting
     //Post: allow class to set the value of all Bought Painting fields in a record
-    BoughtPainting(String fname, String lname, String work, Date dwork, 
-    String clas, double h, double w, String med, String sub, double max, 
+    BoughtPainting(String fname, String lname, String work, Date dwork,
+    String clas, double h, double w, String med, String sub, double max,
     Date d, String n, String a, double p)
     {
             artistFirstName=fname;
@@ -62,14 +63,14 @@ protected double targetSellingPrice;
 
     //Desc: allows class to access the suggestedMaximumPurchasePrice field in a record
     //Return: suggestedMaximumPurchasePrice
-    public double getSuggestedMaximumPurchasePrice() 
+    public double getSuggestedMaximumPurchasePrice()
     {
             return suggestedMaximumPurchasePrice;
     }
 
     //Desc:allows class to set the value of the suggestedMaximumPurchasePrice field in a record
     //Post: suggestedMaximumPurchasePrice is set to d
-    public void setSuggestedMaximumPurchasePrice(double d) 
+    public void setSuggestedMaximumPurchasePrice(double d)
     {
             suggestedMaximumPurchasePrice=d;
     }
@@ -77,21 +78,21 @@ protected double targetSellingPrice;
 
     //Desc: allows class to access the dateOfPurchase field in a record
     //Return: dateOfPurchase
-    public Date getDateOfPurchase() 
+    public Date getDateOfPurchase()
     {
             return dateOfPurchase;
     }
 
     //Desc:allows class to set the value of the dateOfPurchase field in a record
     //Post: dateOfPurchase is set to d
-    public void setDateOfPurchase(Date d) 
+    public void setDateOfPurchase(Date d)
     {
             dateOfPurchase=d;
     }
 
     //Desc: allows class to access the nameOfSeller field in a record
     //Return: nameOfSeller
-    public String getNameOfSeller() 
+    public String getNameOfSeller()
     {
             return nameOfSeller;
     }
@@ -123,10 +124,10 @@ protected double targetSellingPrice;
     {
             return actualPurchasePrice;
     }
-    //Desc: allows class to set the value of the actualPurchasePrice 
+    //Desc: allows class to set the value of the actualPurchasePrice
 //      field in a record
     //Post: actualPurchasePrice is set to p
-    public void setActualPurchasePrice(Double p) 
+    public void setActualPurchasePrice(Double p)
     {
             actualPurchasePrice=p;
     }
@@ -147,40 +148,40 @@ protected double targetSellingPrice;
     }
 
     //Desc: updates the suggestedMaximumPurchasePrice in a record from user's input
-    //Post: suggestedMaximumPurchasePrice field is updated 
-    public void updateSuggestedMaximumPurchasePrice() 
+    //Post: suggestedMaximumPurchasePrice field is updated
+    public void updateSuggestedMaximumPurchasePrice()
     {
-        try 
+        try
         {
             System.out.println("Old Max Purchase Price:" + suggestedMaximumPurchasePrice);
             System.out.println("Please enter new Max Purchase Price and press <ENTER>: ");
             double tempmax=new Double(UserInterface.getString());
             suggestedMaximumPurchasePrice=tempmax;
         }
-        
+
         catch (NumberFormatException e)
         {
-           System.out.println("Value entered is not an double value. Please enter a double value: "); 
+           System.out.println("Value entered is not an double value. Please enter a double value: ");
            suggestedMaximumPurchasePrice=Double.parseDouble(UserInterface.getString());
            return;
         }
     }
 
     //Desc: updates the dateOfPurchase in a record from user's input
-    //Post: dateOfPurchase field is updated 
+    //Post: dateOfPurchase field is updated
     public void updateDateOfPurchase()
     {
-        try 
+        try
         {
             System.out.println("Old Date of Purchase:" + dateOfPurchase);
             System.out.println("Please enter new Date of Purchase (mm/dd/yyyy) and press <ENTER>: ");
             Date tempDate=new Date(UserInterface.getString());
             dateOfPurchase=tempDate;
         }
-        
+
         catch (NumberFormatException e)
         {
-           System.out.println("Value entered is not a date value. Please enter a date value (mm/dd/yyyy): "); 
+           System.out.println("Value entered is not a date value. Please enter a date value (mm/dd/yyyy): ");
            Date tempDate=new Date (UserInterface.getString());
            dateOfPurchase=tempDate;
            return;
@@ -188,38 +189,28 @@ protected double targetSellingPrice;
     }
 
     //Desc: updates the nameOfSeller in a record from user's input
-    //Post: nameOfSeller field is updated 
+    //Post: nameOfSeller field is updated
     public void updateNameOfSeller()
     {
         System.out.println("Old Name of Seller:" + nameOfSeller);
         System.out.println("Please enter new Name of Seller and press <ENTER>: ");
         nameOfSeller=UserInterface.getString();
-        while(nameOfSeller.length()>30) 
-        {
-            System.out.println("Name of seller exceeds 30 characters. Please enter shortened name:");
-            nameOfSeller=UserInterface.getString();
-        }           
     }
 
     //Desc: updates the addressOfSeller in a record from user's input
-    //Post: addressOfSeller field is updated 
+    //Post: addressOfSeller field is updated
     public void updateAddressOfSeller()
     {
         System.out.println("Old Address of Seller:" + addressOfSeller);
         System.out.println("Please enter new Address of Seller and press <ENTER>: ");
         addressOfSeller=UserInterface.getString();
-        while(addressOfSeller.length()>40) 
-        {
-            System.out.println("Address of seller exceeds 40 characters. Please enter shortened address:");
-            addressOfSeller=UserInterface.getString();
-        }   
     }
 
     //Desc: updates the actualPurchasePrice in a record from user's input
-    //Post: actualPurchasePrice field is updated 
+    //Post: actualPurchasePrice field is updated
     public void updateActualPurchasePrice ()
     {
-        try 
+        try
         {
             System.out.println("Old Actual Purchase Price:" + actualPurchasePrice);
             System.out.println("Please enter new Actual Purchase Price and press <ENTER>: ");
@@ -227,37 +218,37 @@ protected double targetSellingPrice;
             actualPurchasePrice=tempprice;
             targetSellingPrice=actualPurchasePrice*TARGET_PROFIT;
         }
-        
+
         catch (NumberFormatException e)
         {
-           System.out.println("Value entered is not an double value. Please enter a double value: "); 
+           System.out.println("Value entered is not an double value. Please enter a double value: ");
            actualPurchasePrice=Double.parseDouble(UserInterface.getString());
            targetSellingPrice=actualPurchasePrice*TARGET_PROFIT;
            return;
         }
     }
-	
+
     //Desc: updates the targetSellingPrice in a record from user's input
-    //Post: targetSellingPrice field is updated 
-    public void updateTargetSellingPrice() 
-    {      
-        try 
+    //Post: targetSellingPrice field is updated
+    public void updateTargetSellingPrice()
+    {
+        try
         {
             System.out.println("Old Target Selling Price:" + targetSellingPrice);
             System.out.println("Please enter new Target Selling Price and press <ENTER>: ");
             double tempprice=new Double(UserInterface.getString());
             targetSellingPrice=tempprice;
         }
-        
+
         catch (NumberFormatException e)
         {
-           System.out.println("Value entered is not an double value. Please enter a double value: "); 
+           System.out.println("Value entered is not an double value. Please enter a double value: ");
            targetSellingPrice=Double.parseDouble(UserInterface.getString());
            return;
         }
 
     }
-	
+
     //Desc:uses the last name of an artist and title of work to find a record in the file
     //Return: returns true if record is found or false if record is not found
     public boolean find(String alastname, String title)
@@ -272,9 +263,9 @@ protected double targetSellingPrice;
                 while (!found && (inFile.getFilePointer()!=inFile.length()))
                 {
                     read (inFile);
-                    if (artistLastName.equalsIgnoreCase(alastname) && 
+                    if (artistLastName.equalsIgnoreCase(alastname) &&
                     titleOfWork.equalsIgnoreCase(title))
-                        found = true;       
+                        found = true;
                 }
                 inFile.close();
             }
@@ -284,23 +275,23 @@ protected double targetSellingPrice;
         {
             System.out.println ("***** Error: BoughtPainting.find () *****");
             System.out.println ("\t" + e);
-            return false; 
+            return false;
         }
     }
 
     //Desc: reads a single BoughtPainting record into an object from the fileName
-    //Pre: RandomAccessFile must exist 
+    //Pre: RandomAccessFile must exist
     //Post: all Bought Painting fields from are read into this object
     public void read(RandomAccessFile fileName)
     {
         try
         {
-            
-            String  inputString = new String ();	
-            int	i = 0;		             
-            inputString = fileName.readLine (); 
+
+            String  inputString = new String ();
+            int	i = 0;
+            inputString = fileName.readLine ();
             //Artist First Name
-            StringBuffer input = new StringBuffer ();	
+            StringBuffer input = new StringBuffer ();
             while (inputString.charAt (i) != '|')
             {
               input.append (inputString.charAt (i));
@@ -331,12 +322,12 @@ protected double targetSellingPrice;
             while (inputString.charAt (i) != '|')
             {
               input.append (inputString.charAt (i));
-              i++; 
+              i++;
             }
             Date tempdow = new Date (input.toString ());
             dateOfWork = tempdow;
             i++;
-            //classification
+           //classification
             input = new StringBuffer ();
             while (inputString.charAt (i) != '|')
             {
@@ -344,7 +335,7 @@ protected double targetSellingPrice;
               i++;
             }
             classification = input.toString ();
-            i++;
+            i++; 
             //Height
             input = new StringBuffer ();
             while (inputString.charAt (i) != '|')
@@ -393,6 +384,7 @@ protected double targetSellingPrice;
             Double tempmax = new Double (input.toString ());
             suggestedMaximumPurchasePrice= tempmax;
             i++;
+
             //Date of Purchase
             input = new StringBuffer ();
             while (inputString.charAt (i) != '|')
@@ -440,16 +432,16 @@ protected double targetSellingPrice;
             }
             Double temptarget = new Double (input.toString ());
             targetSellingPrice = temptarget;
-            i++;           
+            i++;
         }
         catch (Exception e)
         {
-            System.out.println ("***** Error: BoughtPainting.read () *****");
+            System.out.println ("***** Error: BoughtPainting.readsss () *****");
             System.out.println ("\t" + e);
         }
 
     }
-    
+
     //Desc: writes all BoughtPainting fields to a record line in the specified file
     //Post: updates the specified file
     public void write(RandomAccessFile fileName)
@@ -478,7 +470,7 @@ protected double targetSellingPrice;
             System.out.println ("\t" + e);
         }
     }
-    
+
     //Desc: saves an individual bought painting record into a file.  Will save over an
     //      existing record if the last name and title of work match or will add
     //      a new record if no existing record matches this object.
@@ -489,10 +481,10 @@ protected double targetSellingPrice;
     {
         try
         {
-            File paintingsFile = new File ("GalleryPaintings.dat");	
-            File  tempPaintingsFile = new File ("GalleryPaintings.tmp");	
-            BoughtPainting tempPainting = new BoughtPainting ();	
-            boolean found = false;		
+            File paintingsFile = new File ("GalleryPaintings.dat");
+            File  tempPaintingsFile = new File ("GalleryPaintings.tmp");
+            BoughtPainting tempPainting = new BoughtPainting ();
+            boolean found = false;
             RandomAccessFile newFile = new RandomAccessFile (tempPaintingsFile, "rw");
             if (!paintingsFile.exists ())
             {
@@ -502,31 +494,30 @@ protected double targetSellingPrice;
             {
                 RandomAccessFile oldFile = new RandomAccessFile (paintingsFile, "r");
                 boolean comparePaintings;
-                while (oldFile.getFilePointer () != oldFile.length ()) 
+                while (oldFile.getFilePointer () != oldFile.length ())
                 {
                     tempPainting.read(oldFile);
                     if (artistLastName.equalsIgnoreCase(tempPainting.getArtistLastName()) &&
                     titleOfWork.equalsIgnoreCase(tempPainting.getTitleofWork()))
                         comparePaintings=true;
                     else comparePaintings=false;
-                    if(comparePaintings) 
+                    if(comparePaintings)
                     {
-                        write (newFile); 
+                        write (newFile);
                         found=true;
-                    } 
+                    }
                     else
                     {
-                      tempPainting.write(newFile); 
+                      tempPainting.write(newFile);
                     }
-                }  
-                if (!found) write (newFile); 
+                }
+                if (!found) write (newFile);
                 oldFile.close ();
             }
             newFile.close ();
             paintingsFile.delete ();
             tempPaintingsFile.renameTo (paintingsFile);
             System.out.println("record saved to file");
-            UserInterface.pressEnter();
         }
         catch (Exception e)
         {
@@ -534,41 +525,35 @@ protected double targetSellingPrice;
             System.out.println ("\t" + e);
         }
     }
-    
+
     //Desc: reads in all fields into a Painting object from user input
     //Post: artistFirstName, artistLastName, and fashionabilityValue are modified
     public void readInRecord()
     {
         try
-        {                        		
+        {
             System.out.println("Enter Artist First name: ");
             artistFirstName = UserInterface.getString();
-            while(artistFirstName.length()>21) //extra is for ?
-            {
-                System.out.println("Artist's First name exceeds 20 characters. Please enter shortened name:");
-                artistFirstName=UserInterface.getString();
-            }
-            
+
             System.out.println("Enter Artist Last name: ");
             artistLastName= UserInterface.getString();
-            while(artistLastName.length()>21) 
-            {
-                System.out.println("Artist's Last name exceeds 20 characters. Please enter shortened name:");
-                artistLastName=UserInterface.getString();
-            }            
-            
+
             System.out.println("Enter title of painting: ");
             titleOfWork = UserInterface.getString();
-            while(titleOfWork.length()>41) 
+
+/*            System.out.println("Enter classification of Painting (masterpiece, masterwork, or other): ");
+            classification = UserInterface.getString();
+            while (!(classification.equalsIgnoreCase("masterpiece")|classification.equalsIgnoreCase("masterwork")|
+                    classification.equalsIgnoreCase("other")))
             {
-                System.out.println("Title of Work exceeds 40 characters. Please enter shortened title:");
-                titleOfWork=UserInterface.getString();
-            }            
-            
+                System.out.println("Classification entered incorrectly. Please enter one of the following mediums: masterpiece, masterwork, or other.");
+                classification=UserInterface.getString();
+            }
+*/
             System.out.println("Enter the date the painting was created (mm/dd/yyyy): ");
             Date tempdate = new Date(UserInterface.getString());
-            dateOfWork=tempdate; 
-            
+            dateOfWork=tempdate;
+
             System.out.println("Enter painting medium (oil, watercolor, or other): ");
             medium  = UserInterface.getString();
             while (!(medium.equalsIgnoreCase("oil")|medium.equalsIgnoreCase("watercolor")|
@@ -577,7 +562,7 @@ protected double targetSellingPrice;
                 System.out.println("Medium entered incorrectly. Please enter one of the following mediums: oil, watercolor, or other.");
                 medium=UserInterface.getString();
             }
-            
+
             System.out.println("Enter painting subject (portrait, still-life, landscape, or other): ");
             subject =UserInterface.getString();
             while (!(subject.equalsIgnoreCase("portrait")|subject.equalsIgnoreCase("still-life")|
@@ -586,40 +571,44 @@ protected double targetSellingPrice;
                 System.out.println("Subject entered incorrectly. Please enter one of the following subjects: portrait, still-life, landscape, or other.");
                 subject=UserInterface.getString();
             }
-            
+
             System.out.println("Enter painting width: ");
             Double tempw=new Double( UserInterface.getString());
             width =tempw;
-            
+
             System.out.println("Enter painting height: ");
             Double temph=new Double(UserInterface.getString());
             height =temph;
         }
-        
+
         catch (Exception e)
         {
-           System.out.println("Record value entered is not the correct data type. Please re-enter the record: "); 
+           System.out.println("Record value entered is not the correct data type. Please re-enter the record: ");
            readInRecord();
         }
 
     }
-    
-    //Desc: Deletes a single record in the GalleryPaintings.dat File if the artist last 
+
+    //Desc: Deletes a single record in the GalleryPaintings.dat File if the artist last
     //      name and first name matches this object.
-    //Post: Modifies the GalleryPaintings.dat File   
+    //Post: Modifies the GalleryPaintings.dat File
     public void performDeletion ()
     {
         try
         {
             File  paintingsFile = new File ("GalleryPaintings.dat");
             File  tempPaintingsFile = new File ("GalleryPaintings.tmp");
+
             BoughtPainting bp = new BoughtPainting ();	// record to be checked
+
             if (!paintingsFile.exists ())
             {
               return;
             }
+
             RandomAccessFile inFile = new RandomAccessFile (paintingsFile, "r");
             RandomAccessFile outFile = new RandomAccessFile (tempPaintingsFile, "rw");
+
             while (inFile.getFilePointer () != inFile.length ())
             {
               bp.read (inFile);
@@ -630,6 +619,7 @@ protected double targetSellingPrice;
                   bp.write (outFile);
               }
             }
+
             inFile.close ();
             outFile.close ();
 
@@ -642,8 +632,8 @@ protected double targetSellingPrice;
             System.out.println ("***** Error: BoughtPainting.performDeletion () *****");
             System.out.println ("\t" + e);
         }
-    }  
-  
+    }
+
     public void print ()
     {
       System.out.print ("Artist First Name: " + artistFirstName);
@@ -657,12 +647,13 @@ protected double targetSellingPrice;
       System.out.print ("\t Subject: " + subject);
       System.out.print ("\t Suggested Max Purchase Price: " + suggestedMaximumPurchasePrice);
       System.out.print ("\t Date Of Purchase: " + dateOfPurchase);
-      System.out.print ("\t Name Of Seller: " + nameOfSeller);    
-      System.out.print ("\t Address Of Seller: " + addressOfSeller);    
-      System.out.print ("\t Actual Purchase Price: " + actualPurchasePrice); 
-      System.out.println ("\t Target Selling Price: " + targetSellingPrice);    
-    } 
-    
+      System.out.print ("\t Name Of Seller: " + nameOfSeller);
+      System.out.print ("\t Address Of Seller: " + addressOfSeller);
+      System.out.print ("\t Actual Purchase Price: " + actualPurchasePrice);
+      System.out.println ("\t Target Selling Price: " + targetSellingPrice);
+    }
+
+
   //Desc: prompts the user to enter the special bought painting fields so that
   //    the painting the user buys can be added to "GalleryPainting.dat"
   //Pre: all of the values from painting class must already be set
