@@ -601,11 +601,7 @@ protected double targetSellingPrice;
            System.out.println("Record value entered is not the correct data type. Please re-enter the record: "); 
            readInRecord();
         }
-        /* catch (Exception e)
-        {
-            System.out.println ("***** Error: Investment.readInvestmentData () *****");
-            System.out.println ("\t" + e);
-        }*/
+
     }
     
     //Desc: Deletes a single record in the GalleryPaintings.dat File if the artist last 
@@ -699,7 +695,7 @@ protected double targetSellingPrice;
 	save ();
 	System.out.println ("\nThe following record was inserted\n");
 	print ();
-	//UserInterface.pressEnter();
+
 
     }
     catch (Exception e)
