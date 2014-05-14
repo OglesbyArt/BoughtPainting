@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Date;
 
-class BoughtPainting extends Painting
+class BoughtPainting extends Painting implements  Comparable <BoughtPainting>
 {
 
 protected double suggestedMaximumPurchasePrice;
@@ -696,4 +696,9 @@ protected double targetSellingPrice;
     }
 
   }  
+     @Override
+    public int compareTo(BoughtPainting comparePainting) 
+    {
+        return classification.compareToIgnoreCase(comparePainting.getClassification());
+    } 
 }
